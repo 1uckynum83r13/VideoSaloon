@@ -9,8 +9,6 @@ public class Record {
     public Record(Person customer, Game game) {
         this.customer = customer;
         this.game = game;
-        this.date = new Date(); // !!!
+        this.date = new Date();
     }
-
-
 }

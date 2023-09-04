@@ -1,8 +1,11 @@
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Objects;
 
 public class Manager {
     private String managerName;
-    public Manager (String managerName) {
+
+    public Manager(String managerName) {
         this.managerName = managerName;
     }
 
@@ -15,7 +18,7 @@ public class Manager {
     }
 
     public static void addPerson(ArrayList<Person> personsArrayList, String personName, String telNumber, String email) {
-        Person person = new Person (personName, telNumber, email);
+        Person person = new Person(personName, telNumber, email);
         personsArrayList.add(person);
     }
 
@@ -27,11 +30,13 @@ public class Manager {
         return addedGamesArrayList;
     }
 
-    public static void makeAdoptRecord(Person person, Game game){
-        System.out.println("Клиент - " + person.getPersonName());
-        System.out.println("Арендовал игру - " + game.getGameName());
-        // этот метод должен выдать инфу о том, кто что заказал
+    public void makeRecord(ArrayList<Record> records, Game game, Person person, GameCatalog gameCatalog) {
+        if (gameCatalog.checkGameAvailability(game.getGameName())) {
+            gameCatalog.reduceGameQuantity(game.getGameName());
+            Record record = new Record(person, game);
+            records.add(record);
+            System.out.println("Запись создана: " + record);
+        }
     }
 
-    // в мейне будет листофрекордс с записями о клиентах;
 }

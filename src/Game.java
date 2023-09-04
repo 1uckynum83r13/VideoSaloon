@@ -5,12 +5,13 @@ public class Game {
     private String genre;
     private int dateOfPublishing;
 
-
     public Game(String gameName, String genre, int dateOfPublishing) {
         this.gameName = gameName;
         this.genre = genre;
         this.dateOfPublishing = dateOfPublishing;
+
     }
+
 
     public String getGameName() {
         return gameName;
