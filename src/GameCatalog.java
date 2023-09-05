@@ -11,10 +11,10 @@ public class GameCatalog {
         this.name = name;
     }
 
-    public static void addGame(ArrayList<Game> gamesArrayList, String gameName, String genre, int dateOfPublishing) {
-        Game game = new Game (gameName, genre, dateOfPublishing);
-        gamesArrayList.add(game);
-    }
+//    public static void addGame(ArrayList<Game> gamesArrayList, String gameName, String genre, int dateOfPublishing) {
+//        Game game = new Game (gameName, genre, dateOfPublishing);
+//        gamesArrayList.add(game);
+//    }
 
     public void addGame(String gameName, int quantity) {
 

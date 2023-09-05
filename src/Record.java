@@ -1,14 +1,19 @@
 import java.util.Date;
 
 public class Record {
+    private int recordId;
+    private int personId;
+    private int managerId;
+    private int gameExemplaryID;
+    private int dateOfRent;
+    private int getDateOfReturn;
 
-    private Person customer;
-    private Game game;
-    private Date date;
-
-    public Record(Person customer, Game game) {
-        this.customer = customer;
-        this.game = game;
-        this.date = new Date();
+    public Record(int recordId, int personId, int managerId, int gameExemplaryID, int dateOfRent, int getDateOfReturn) {
+        this.recordId = recordId;
+        this.personId = personId;
+        this.managerId = managerId;
+        this.gameExemplaryID = gameExemplaryID;
+        this.dateOfRent = dateOfRent;
+        this.getDateOfReturn = getDateOfReturn;
     }
 }

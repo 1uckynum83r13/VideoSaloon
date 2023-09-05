@@ -1,11 +1,13 @@
 import java.util.ArrayList;
 
 public class Person {
+    private int personId;
     private String personName;
     private String telNumber;
     private String email;
 
-    public Person (String personName, String telNumber, String email) {
+    public Person (int personId, String personName, String telNumber, String email) {
+        this.personId = personId;
         this.personName = personName;
         this.telNumber = telNumber;
         this.email = email;
@@ -31,10 +33,4 @@ public class Person {
     public void setEmail(String email) {
         this.email = email;
     }
-
-    public static void addGameForRent(ArrayList<Game> gamesArrayList, String gameName, String genre, int dateOfPublishing, int quantity) {
-        Game games = new Game(gameName, genre, dateOfPublishing);
-        gamesArrayList.add(games);
-    }
-
 }

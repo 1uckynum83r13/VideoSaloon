@@ -1,11 +1,13 @@
 import java.util.ArrayList;
 
 public class Game {
+    private int gameId;
     private String gameName;
     private String genre;
     private int dateOfPublishing;
 
-    public Game(String gameName, String genre, int dateOfPublishing) {
+    public Game(int gameId, String gameName, String genre, int dateOfPublishing) {
+        this.gameId = gameId;
         this.gameName = gameName;
         this.genre = genre;
         this.dateOfPublishing = dateOfPublishing;
