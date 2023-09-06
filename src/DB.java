@@ -4,12 +4,14 @@ import java.util.Date;
 public class DB {
     private static Connection connection;
     private static final String database = "VideoSaloon.db";
-    private static final String recordsTable = "record";
+    private static final String recordsTable = "recordsTable";
     private static final String gameCatalog = "gameCatalog";
     private static final String personTable = "personTable";
+
     static void openConnection() throws SQLException {
         connection = DriverManager.getConnection("jdbc:sqlite:" + database);
     }
+
     static void closeConnection() throws SQLException {
         if (connection != null) {
             connection.close();
@@ -47,7 +49,7 @@ public class DB {
     static void CreateRecordsTable() throws SQLException {
         Statement statement = connection.createStatement();
         String SQL = """
-                CREATE TABLE IF NOT EXISTS adoption_records (
+                CREATE TABLE IF NOT EXISTS recordsTable (
                     ID INTEGER PRIMARY KEY AUTOINCREMENT,
                     personID INTEGER,
                     gameExemplaryId INTEGER,
@@ -56,6 +58,7 @@ public class DB {
                  )""";
         statement.executeUpdate(SQL);
     }
+
     static void makeRecord(int personID, int gameExemplaryId) throws SQLException {
         String SQL = "INSERT INTO " + recordsTable + " (personID, gameExemplaryId, dateOfRent, dateOfReturn) VALUES (?, ?, ?, ?)";
         PreparedStatement preparedStatement = connection.prepareStatement(SQL);
@@ -68,32 +71,39 @@ public class DB {
 
 
         preparedStatement.executeUpdate();
+
+        ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
+        if (generatedKeys.next()) {
+            System.out.format("Клиент с ID: %d арендовал игру с ID: %d. ID записи: %d\n",
+                    personID, gameExemplaryId, generatedKeys.getLong(1));
+        }
     }
 
-    static void CreateTableForPerson() throws SQLException {
-        Statement statement = connection.createStatement();
-        String SQL = """
-                CREATE TABLE IF NOT EXISTS personTable (
-                    ID INTEGER PRIMARY KEY AUTOINCREMENT,
-                    personName STRING,
-                    telNumber STRING,
-                    email STRING
-                 )""";
-        statement.executeUpdate(SQL);
-    }
-    static void addPerson(String personName, String telNumber, String email) throws SQLException {
-        String SQL = "INSERT INTO " + personTable + " (personName, telNumber, email) VALUES (?, ?, ?)";
-        PreparedStatement preparedStatement = connection.prepareStatement(SQL);
-        preparedStatement.setString(1, personName);
-        preparedStatement.setString(2, telNumber);
-        preparedStatement.setString(3, email);
+        static void CreateTableForPerson () throws SQLException {
+            Statement statement = connection.createStatement();
+            String SQL = """
+                    CREATE TABLE IF NOT EXISTS personTable (
+                        ID INTEGER PRIMARY KEY AUTOINCREMENT,
+                        personName STRING,
+                        telNumber STRING,
+                        email STRING
+                     )""";
+            statement.executeUpdate(SQL);
+        }
 
-        preparedStatement.executeUpdate();
+        static void addPerson (String personName, String telNumber, String email) throws SQLException {
+            String SQL = "INSERT INTO " + personTable + " (personName, telNumber, email) VALUES (?, ?, ?)";
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL);
+            preparedStatement.setString(1, personName);
+            preparedStatement.setString(2, telNumber);
+            preparedStatement.setString(3, email);
 
-//        ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
-//        if (generatedKeys.next()) {
-//            System.out.format("Добавлен клиент %s с ID: %d \n",
-//                    personName, generatedKeys.getLong(1));
-//        }
+            preparedStatement.executeUpdate();
+
+            ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
+            if (generatedKeys.next()) {
+                System.out.format("Добавлен клиент %s с ID: %d \n",
+                        personName, generatedKeys.getLong(1));
+            }
+        }
     }
-}

@@ -3,26 +3,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class Main {
-// Программа для проката видеоигр на дисках;
-
-// 1) Данные о играх: название, жанр, год выпуска, и так же количество копий на складе; v
-
-// 2) Данные о пользователях, арендовавших игру: имя, телефон, почта; v
-
-// 3) Возможности программы: вывести все игры в каталоге, доступные для аренды; v
-
-// 4) Вывести все игры, которые у кого-то на руках;
-
-// 5) Оповестить пользователя по почте о том, что он держит игру на руках больше недели;
-
-// 6) Метод: валидировать игру на наличие;
-
-// 7) Записать игру за персоной;
-
-// 8) Добавить персону в список клиентов; v
-
-// 9) Отнять один из количества игр;
-
     public static void main(String[] args) throws SQLException {
 
         //ArrayList<Person> personsArrayList = new ArrayList();
@@ -73,8 +53,8 @@ public class Main {
 //        Printer.printAvailableGames(allGames);
 
         //    ТАБЛИЦА С ИГРАМИ;
-        DB.CreateTableForCatalog();
         DB.openConnection();
+        DB.CreateTableForCatalog();
         DB.addGame("GTA 2", "Action", 1999);
         DB.addGame("Need For Speed 5: Porsche Unleashed", "Аркадные гонки", 2000);
         DB.addGame("Need For Speed Underground 1", "Аркадные гонки", 2003);
@@ -88,8 +68,8 @@ public class Main {
         DB.closeConnection();
 
         //    ТАБЛИЦА С КЛИЕНТАМИ;
-        DB.CreateTableForPerson();
         DB.openConnection();
+        DB.CreateTableForPerson();
         DB.addPerson("Стас", "+7(999)999-99-99", "s@mail.ru");
         DB.addPerson("Андрей", "+7(888)888-88-88", "a@mail.ru");
         DB.addPerson("Ваня", "+7(777)777-77-77", "v@mail.ru");
@@ -100,6 +80,21 @@ public class Main {
         DB.addPerson("Витя", "+7(222)222-22-22", "vv@mail.ru");
         DB.addPerson("Александр", "+7(111)111-11-11", "aaa@mail.ru");
         DB.addPerson("Роман", "+7(000)000-00-00", "r@mail.ru");
+        DB.closeConnection();
+
+        //    ТАБЛИЦА И ЗАКАЗАМИ;
+        DB.openConnection();
+        DB.CreateRecordsTable();
+        DB.makeRecord(1, 10);
+        DB.makeRecord(2, 9);
+        DB.makeRecord(3, 8);
+        DB.makeRecord(4, 7);
+        DB.makeRecord(5, 6);
+        DB.makeRecord(6, 5);
+        DB.makeRecord(7, 4);
+        DB.makeRecord(8, 3);
+        DB.makeRecord(9, 2);
+        DB.makeRecord(10, 1);
         DB.closeConnection();
     }
 }
