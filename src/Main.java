@@ -67,8 +67,41 @@ public class Main {
         DB.addGame("Vietcong", "Шутер от 1-го лица", 2003);
         DB.closeConnection();
 
+        //    ТАБЛИЦА С ЭКЗЕМПЛЯРАМИ ИГР;
+        DB.CreateGameExemplaryTable();
+        DB.addGameExemplary(1);
+        DB.addGameExemplary(1);
+        DB.addGameExemplary(1);
+        DB.addGameExemplary(2);
+        DB.addGameExemplary(2);
+        DB.addGameExemplary(2);
+        DB.addGameExemplary(3);
+        DB.addGameExemplary(3);
+        DB.addGameExemplary(3);
+        DB.addGameExemplary(4);
+        DB.addGameExemplary(4);
+        DB.addGameExemplary(4);
+        DB.addGameExemplary(5);
+        DB.addGameExemplary(5);
+        DB.addGameExemplary(5);
+        DB.addGameExemplary(6);
+        DB.addGameExemplary(6);
+        DB.addGameExemplary(6);
+        DB.addGameExemplary(7);
+        DB.addGameExemplary(7);
+        DB.addGameExemplary(7);
+        DB.addGameExemplary(8);
+        DB.addGameExemplary(8);
+        DB.addGameExemplary(8);
+        DB.addGameExemplary(9);
+        DB.addGameExemplary(9);
+        DB.addGameExemplary(9);
+        DB.addGameExemplary(10);
+        DB.addGameExemplary(10);
+        DB.addGameExemplary(10);
+        DB.closeConnection();
+
         //    ТАБЛИЦА С КЛИЕНТАМИ;
-        DB.openConnection();
         DB.CreateTableForPerson();
         DB.addPerson("Стас", "+7(999)999-99-99", "s@mail.ru");
         DB.addPerson("Андрей", "+7(888)888-88-88", "a@mail.ru");
@@ -83,7 +116,6 @@ public class Main {
         DB.closeConnection();
 
         //    ТАБЛИЦА И ЗАКАЗАМИ;
-        DB.openConnection();
         DB.CreateRecordsTable();
         DB.makeRecord(1, 10);
         DB.makeRecord(2, 9);
